@@ -1,0 +1,26 @@
+Plant exchange- place for neighbors to give away and find free plants
+
+Home page- all plants that are available
+Show page- Plant show page with more details, contact number, location
+User page- User can upload plant, delete plant
+Cart page- view their cart, check out
+
+
+User -> username
+has_many :plants
+has_many :cart_plants, through: :plants
+has_many :carts
+
+Cart -> user_id, checkout(boolean- if true, plants are unavailable)
+belongs_to :user
+has_many :cart_plants
+has_many :plants, through: :cart_plants
+
+Plant -> name, description, available(boolean)
+belongs_to :user
+has_many :cart_plants
+has_many :carts, through: :cart_plants
+
+Cart_plants -> join table- cart_id, plant_id
+belongs_to :user
+belongs_to :plant
