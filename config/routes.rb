@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :cart_plants
-      resources :carts
       resources :plants
-      resources :users
+      resources :users do
+          resources :carts #can only access carts through user
+      end
     end
   end
 end

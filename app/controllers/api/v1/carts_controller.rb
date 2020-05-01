@@ -1,7 +1,9 @@
 class Api::V1::CartsController < ApplicationController
+    before_action :set_user
+    #every time we access cart, it needs to be connected to user
 
     def show
-        cart = Cart.find_by(id: params[:id])
+        cart = @user.carts.find_by(id: params[:id])
         if cart
             render json: cart
         else 
@@ -16,6 +18,10 @@ class Api::V1::CartsController < ApplicationController
         cart.save
 
         #create a new cart (blank slate), import this json
+    end
+
+    def set_user
+        @user = User.find(params[:user_id])
     end
 
 end
