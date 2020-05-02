@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :plants
-      get '/api/v1/plants', :to => 'plants#user_index'
+      get '/landingpage', :to => 'plants#plant_index_home'
       resources :sessions
       resources :users do 
         resources :plants

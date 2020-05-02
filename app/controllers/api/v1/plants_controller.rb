@@ -1,5 +1,5 @@
 class Api::V1::PlantsController < ApplicationController
-    before_action :set_user, except: :index
+    before_action :set_user, except: :plant_index_home
 
     def create
         @plant = @user.plants.build(plants_params)
@@ -10,13 +10,13 @@ class Api::V1::PlantsController < ApplicationController
         end
     end
 
-    def user_index #how will I express this one?
-        @plants = @user.plants.all
+    def plant_index_home 
+        @plants = Plant.all
         render json: @plants
     end
 
     def index
-        @plants = Plant.all
+        @plants = @user.plants.all
         render json: @plants, include: [:user]
     end
 
