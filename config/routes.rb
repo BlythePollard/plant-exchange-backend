@@ -2,10 +2,14 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :plants
-      resources :users
+      get '/api/v1/plants', :to => 'plants#user_index'
       resources :sessions
+      resources :users do 
+        resources :plants
+      end
     end
   end
+  
 end
 
 #to fetch all plants with regular route: http://localhost3000/plants

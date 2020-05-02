@@ -7,12 +7,13 @@ class Api::V1::UsersController < ApplicationController
             render json: user
         else 
             render json: {message: "User could not be found or created"}
+        end
     end
 
     def show
         user = User.find_by(id: params[:id])
         if user
-            render json: user
+            render json: user, include: [:plants]
         else 
             render json: {message: "User not found"}
         end

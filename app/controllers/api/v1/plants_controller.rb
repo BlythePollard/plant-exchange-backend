@@ -1,23 +1,28 @@
 class Api::V1::PlantsController < ApplicationController
+    before_action :set_user, except: :index
 
     def create
         @plant = @user.plants.build(plants_params)
         if @plant.save
-            render json: @plant
+            render json: @plant, include: [:user]
         else 
             render json: {error: 'Error creating plant'}
         end
     end
 
-    def index
+    def user_index #how will I express this one?
         @plants = @user.plants.all
         render json: @plants
-        #will want to use serializer if we don't want to send all data to front end (or use 'except')
+    end
+
+    def index
+        @plants = Plant.all
+        render json: @plants, include: [:user]
     end
 
     def show
         @plant = @user.plants.find(params[:id]) #repetetive- can make a before set_account method if I want to refactor
-        render json: @plant
+        render json: @plant, include: [:user]
     end
 
     def destroy 
