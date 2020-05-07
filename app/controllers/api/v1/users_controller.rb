@@ -11,8 +11,8 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def index
-        users = User.all 
-        render json: users
+        @users = User.all
+        render json: @users
     end
 
     def show
@@ -20,7 +20,7 @@ class Api::V1::UsersController < ApplicationController
         if user
             render json: user, include: [:plants]
         else 
-            render json: {message: "User not found"}
+            render json: {message: "User was not found"}
         end
     end
 

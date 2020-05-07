@@ -3,7 +3,7 @@
 User.destroy_all
 Plant.destroy_all
 
-user = User.create(username: 'Blythe')
+user = User.create(username: 'Blythe', email: 'blythe@gmail.com')
 
 plant1 = Plant.create(name:"lilac", description:"young lilac bush", available:true, user_id:1)
 plant2 = Plant.create(name:"cottonwood tree", description:"10 ft. tall, healthy", available:true, user_id:1)

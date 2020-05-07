@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class Api::V1::SessionsController < ApplicationController
     before_action :require_login, :except => [:new, :create]
     
     def new
@@ -6,12 +6,12 @@ class SessionsController < ApplicationController
     end
 
     def create
-        @user = User.find_by(username: params[:username])
+        @user = User.find_by(username: params[:session][:user])
         if @user 
             session[:user_id] = @user.id
-            #render json
+            render json: @user, include: [:plants]
         else 
-            render json: {message: "User not found"}
+            render json: {message: "User not found backend"}
         end
     end
 

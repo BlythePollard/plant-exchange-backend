@@ -2,9 +2,9 @@ class Api::V1::PlantsController < ApplicationController
     before_action :set_user, except: :plant_index_home
 
     def create
-        @plant = @user.plants.build(plants_params)
+        @plant = @user.plants.build(plants_params) #adds plant to database for user
         if @plant.save
-            render json: @plant, include: [:user]
+            render json: @plant #, include: [:user]
         else 
             render json: {error: 'Error creating plant'}
         end
@@ -28,6 +28,7 @@ class Api::V1::PlantsController < ApplicationController
     def destroy 
        @plant = Plant.find(params[:id])
        @plant.destroy
+       render json: @user.plants
     end
 
     private 
