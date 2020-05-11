@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_025144) do
+ActiveRecord::Schema.define(version: 2020_05_11_193030) do
 
   create_table "plants", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.boolean "available", default: true
     t.integer "user_id"
   end
 
