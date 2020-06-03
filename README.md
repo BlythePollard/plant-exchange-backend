@@ -18,3 +18,6 @@ This app does not yet have the capability to create an account/register, so plea
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+
+
